@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGenerate
 import { Address } from "./address.entity";
 
 @Entity('properties')
-export class Propoerty {
+export class Property {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
