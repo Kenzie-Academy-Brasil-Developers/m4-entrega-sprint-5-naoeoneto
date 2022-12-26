@@ -11,7 +11,7 @@ export class Property {
     @Column({ default: false })
     sold: boolean
 
-    @Column()
+    @Column({ type: "decimal", precision: 12, scale: 2 })
     value: number
 
     @Column()

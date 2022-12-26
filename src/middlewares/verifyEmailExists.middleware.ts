@@ -8,7 +8,7 @@ const verifyEmailExistsMiddleware = async (req: Request, res: Response, next: Ne
 
     const verifyEmail = await userRep.findOneBy({ email: req.body.email })
     if(verifyEmail){
-        throw new AppError("User already exists", 400)
+        throw new AppError("User already exists", 409)
     }
 
     return next()

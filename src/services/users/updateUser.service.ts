@@ -1,6 +1,6 @@
 import AppDataSource from "../../data-source";
 import { User } from "../../entities/user.entity";
-import { IUser, IUserUpdate } from "../../interfaces/users/users.interfaces";
+import { IUser, IUserUpdate } from "../../interfaces/users";
 import { returnedUserSchema } from "../../schemas/user.schema";
 
 const updateUserService = async (data: IUserUpdate, userId: string): Promise<IUser> => {

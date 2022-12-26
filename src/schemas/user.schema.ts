@@ -1,7 +1,6 @@
-import { v4 } from "uuid"
 import * as yup from "yup"
 import { SchemaOf } from "yup"
-import { IUserRequest, IUser, IUserUpdate } from "../interfaces/users/users.interfaces"
+import { IUser, IUserRequest, IUserUpdate } from "../interfaces/users"
 
 const createUserSchema: SchemaOf<IUserRequest> = yup.object().shape({
     name: yup.string().required(),
@@ -11,7 +10,7 @@ const createUserSchema: SchemaOf<IUserRequest> = yup.object().shape({
 })
 
 const returnedUserSchema: SchemaOf<IUser> = yup.object().shape({
-    id: yup.string().uuid().default(() => v4()). transform(() => v4()),
+    id: yup.string().uuid(),
     name: yup.string(),
     email: yup.string().email(),
     isAdm: yup.boolean(),

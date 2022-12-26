@@ -1,6 +1,6 @@
 import AppDataSource from "../../data-source"
 import { User } from "../../entities/user.entity"
-import { IUserLogin } from "../../interfaces/users/users.interfaces"
+import { IUserLogin } from "../../interfaces/users"
 import "dotenv/config"
 import { compare } from "bcryptjs"
 import jwt from "jsonwebtoken"
@@ -16,7 +16,7 @@ const createSessionService = async (data: IUserLogin): Promise<string> => {
     
     const comparePassword = await compare(data.password, loggedUser.password)
     if(!comparePassword){
-        throw new AppError("Wrong email/password", 403)
+        throw new AppError ("Wrong email/password", 403)
     }
 
     const token = jwt.sign(
