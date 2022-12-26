@@ -1,6 +1,7 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Address } from "./address.entity";
 import { Category } from "./category.entity";
+import { Schedule } from "./schedules.entity";
 
 @Entity('properties')
 export class Property {
@@ -28,4 +29,7 @@ export class Property {
 
     @ManyToOne(() => Category, category => category.properties)
     category: Category
+
+    @OneToMany(() => Schedule, schedule => schedule.property)
+    schedule: Schedule
 }
