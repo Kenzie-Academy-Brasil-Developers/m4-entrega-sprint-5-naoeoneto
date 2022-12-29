@@ -23,11 +23,11 @@ export class Property {
     @UpdateDateColumn()
     updatedAt: Date
 
-    @OneToOne (() => Address)
+    @OneToOne(() => Address )
     @JoinColumn()
     address: Address
 
-    @ManyToOne(() => Category, category => category.properties)
+    @ManyToOne(() => Category, category => category.properties, { nullable: true })
     category: Category
 
     @OneToMany(() => Schedule, schedule => schedule.property)

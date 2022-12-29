@@ -7,6 +7,7 @@ const listAllPropertiesService = async (): Promise<IPropertyResponse[]> => {
     const propertyRep = AppDataSource.getRepository(Property)
 
     const list = await propertyRep.find({ withDeleted: true })
+    console.log(list)
 
     const returnedList = listPropertiesSchema.validate(list, {
         stripUnknown: true
