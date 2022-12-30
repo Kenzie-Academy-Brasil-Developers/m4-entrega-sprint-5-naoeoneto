@@ -16,7 +16,7 @@ const handleError = async (error: Error, req: Request, res: Response, next: Next
     }
 
     console.log(error.message)
-    // return res.status(500).json({ message: "Internal Server Error" })
+    return res.status(500).json({ message: "Internal Server Error" })
 }
 
 export { AppError, handleError }
