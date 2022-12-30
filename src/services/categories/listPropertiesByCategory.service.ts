@@ -8,20 +8,24 @@ import { AppError } from "../../errors"
 const listPropertiesByCategoryService = async (categoryId: string) => {
         // const propertyRep = AppDataSource.getRepository(Property)
     const categoryRep = AppDataSource.getRepository(Category)
-    const list = await categoryRep.createQueryBuilder("category")
-                .innerJoinAndSelect("category.properties", "props")
-                .where("category.id = :id_category", { id_category: categoryId })
-                .getMany()
+//     const list = await categoryRep.createQueryBuilder("category")
+//                 .innerJoinAndSelect("category.properties", "props")
+//                 .where("category.id = :id_category", { id_category: categoryId })
+//                 .getMany()
     
-    
+    const list = await categoryRep.find({
+        where: {
+                id: categoryId
+                }
+        })
 
       
-        console.log(list)
-        // const returnedList = listPropertiesSchema.validate(list, {
-        //     stripUnknown: true
-        // })
+        console.log(list[0].properties)
+        const returnedList = listPropertiesSchema.validate(list[0].properties, {
+            stripUnknown: true
+        })
     
-        return list
+        return returnedList
 }
 
 export default listPropertiesByCategoryService

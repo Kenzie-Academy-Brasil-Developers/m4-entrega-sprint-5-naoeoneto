@@ -23,7 +23,7 @@ export class Property {
     @UpdateDateColumn()
     updatedAt: Date
 
-    @OneToOne(() => Address )
+    @OneToOne (() => Address, address => address.property)
     @JoinColumn()
     address: Address
 

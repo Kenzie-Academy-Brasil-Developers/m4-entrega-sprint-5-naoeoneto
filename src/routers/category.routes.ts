@@ -11,8 +11,12 @@ import verifyUserIsAdmMiddleware from "../middlewares/verifyUserIsAdm.middleware
 
 const categoriesRoutes = Router()
 
-categoriesRoutes.post("", verifyAuthMiddleware, verifyUserIsAdmMiddleware, verifyCategoryExistsMiddleware, createCategoryController)
+categoriesRoutes.post("", 
+        verifyAuthMiddleware, 
+        verifyUserIsAdmMiddleware, 
+        verifyCategoryExistsMiddleware, 
+        createCategoryController)
 categoriesRoutes.get("", listAllCategoriesController)
-categoriesRoutes.get("/:id/properties", verifyCategoryIdMiddleware, listPropertiesByCategoriesController)
+// categoriesRoutes.get("/:id/properties", verifyCategoryIdMiddleware, listPropertiesByCategoriesController)
 
 export default categoriesRoutes
