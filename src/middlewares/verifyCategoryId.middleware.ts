@@ -5,9 +5,10 @@ import { Category } from "../entities/category.entity"
 import { AppError } from "../errors"
 
 const verifyCategoryIdMiddleware = async (req: Request, res: Response, next: NextFunction) => {
-    const categoryRep = AppDataSource.getRepository(Category) 
+    const categoryRep = AppDataSource.getRepository(Category)
+    // console.log(req.params.id)
 
-    const category = await categoryRep.findOneBy({ id: req.body.categoryId })
+    const category = await categoryRep.findOneBy({ id: req.params.id })
     if(!category){
         throw new AppError("Category not found", 404)
     }

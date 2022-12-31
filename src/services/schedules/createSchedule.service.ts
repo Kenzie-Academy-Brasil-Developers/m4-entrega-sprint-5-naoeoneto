@@ -2,9 +2,10 @@ import AppDataSource from "../../data-source"
 import { Property } from "../../entities/property.entity"
 import { Schedule } from "../../entities/schedules.entity"
 import { User } from "../../entities/user.entity"
-import { IScheduleRequest, IScheduleResponse } from "../../interfaces/schedules"
+import { IScheduleRequest } from "../../interfaces/schedules"
+import { createScheduleSchema } from "../../schemas/schedule.schema"
 
-const createScheduleService = async (data: IScheduleRequest, idUser: string): Promise<string> => {
+const createScheduleService = async (data: IScheduleRequest, idUser: string) => {
     const { date, hour, propertyId, userId } = data
 
     const propertyRep = AppDataSource.getRepository(Property)
@@ -20,9 +21,14 @@ const createScheduleService = async (data: IScheduleRequest, idUser: string): Pr
         property: prop,
         user: user
     })
-    await scheduleRep.save(newSchedule)
+    // await scheduleRep.save(newSchedule)
 
-    return "Schedule booked with success!"
+    const saveSchedule = await createScheduleSchema.validate(newSchedule, {
+        stripUnknown: true
+    })
+    await scheduleRep.save(saveSchedule)
+
+    return saveSchedule
 }
 
 export default createScheduleService
