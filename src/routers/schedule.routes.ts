@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { createScheduleController, listSchedulesByPropertiesController } from "../controllers/schedules/schedules.controller";
-import validateDataMiddleware from "../middlewares/validateData.middleware";
+import { createScheduleController, 
+    listSchedulesByPropertiesController } from "../controllers/schedules/schedules.controller";
 import verifyAuthMiddleware from "../middlewares/verifyAuth.middleware";
 import verifyPropertyIdMiddleware from "../middlewares/verifyPropertyId.middleware";
 import verifyScheduleDataMiddleware from "../middlewares/verifyScheduleData.middleware";

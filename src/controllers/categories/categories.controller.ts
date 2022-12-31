@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { ICategoryRequest, ICategoryResponse } from "../../interfaces/categories";
-import { IPropertyResponse } from "../../interfaces/properties";
 import createCategoryService from "../../services/categories/createCategory.service";
 import listAllCategoriesService from "../../services/categories/listAllCategories.service";
 import listPropertiesByCategoryService from "../../services/categories/listPropertiesByCategory.service";

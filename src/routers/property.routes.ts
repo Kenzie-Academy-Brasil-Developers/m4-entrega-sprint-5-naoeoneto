@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { createPropertyController, listAllPropertiesController } from "../controllers/properties/properties.controller";
+import { createPropertyController, 
+    listAllPropertiesController } from "../controllers/properties/properties.controller";
 import validateDataMiddleware from "../middlewares/validateData.middleware";
 import verifyAuthMiddleware from "../middlewares/verifyAuth.middleware";
 import verifyCategoryIdMiddleware from "../middlewares/verifyCategoryId.middleware";

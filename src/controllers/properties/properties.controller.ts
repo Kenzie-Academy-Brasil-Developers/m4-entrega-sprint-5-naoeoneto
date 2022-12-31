@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { IPropertyRequest, IPropertyResponse } from "../../interfaces/properties";
 import createPropertyService from "../../services/properties/createProperty.service";
 import listAllPropertiesService from "../../services/properties/listAllProperties.service";
 

@@ -3,8 +3,7 @@ import { Category } from "../../entities/category.entity";
 import { Property } from "../../entities/property.entity";
 import { Address } from "../../entities/address.entity";
 import { AppError } from "../../errors";
-import { IPropertyRequest, IPropertyResponse } from "../../interfaces/properties";
-import { returnedPropertySchema } from "../../schemas/property.schema";
+import { IPropertyRequest } from "../../interfaces/properties";
 
 const createPropertyService = async (data: IPropertyRequest): Promise<Property> => {
     const { value, size, address, categoryId } = data
@@ -26,10 +25,6 @@ const createPropertyService = async (data: IPropertyRequest): Promise<Property> 
         value, size, address: newAddress, category: category
     })
     await propertyRep.save(newProperty)
-
-    // const returnedProperty = returnedPropertySchema.validate(newProperty, {
-    //     stripUnknown: true
-    // })
 
     return newProperty
 }
