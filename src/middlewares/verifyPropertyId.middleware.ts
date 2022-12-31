@@ -1,13 +1,10 @@
 import { NextFunction, Request, Response } from "express"
 import AppDataSource from "../data-source"
-import { Category } from "../entities/category.entity"
 import { Property } from "../entities/property.entity"
-// import { Property } from "../entities/property.entity"
 import { AppError } from "../errors"
 
 const verifyPropertyIdMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     const PropertyRep = AppDataSource.getRepository(Property)
-    // console.log(req.params.id)
 
     const property = await PropertyRep.findOneBy({ id: req.params.id })
     if(!property){

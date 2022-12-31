@@ -1,12 +1,10 @@
 import { NextFunction, Request, Response } from "express"
 import AppDataSource from "../data-source"
 import { Category } from "../entities/category.entity"
-// import { Property } from "../entities/property.entity"
 import { AppError } from "../errors"
 
 const verifyCategoryIdMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     const categoryRep = AppDataSource.getRepository(Category)
-    // console.log(req.params.id)
 
     const category = await categoryRep.findOneBy({ id: req.params.id })
     if(!category){

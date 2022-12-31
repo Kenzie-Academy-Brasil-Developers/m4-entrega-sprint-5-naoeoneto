@@ -6,14 +6,13 @@ import verifyPropertyIdMiddleware from "../middlewares/verifyPropertyId.middlewa
 import verifyScheduleDataMiddleware from "../middlewares/verifyScheduleData.middleware";
 import verifyScheduleExistsMiddleware from "../middlewares/verifyScheduleExists.middleware";
 import verifyUserIsAdmMiddleware from "../middlewares/verifyUserIsAdm.middleware";
-import { createScheduleSchema } from "../schemas/schedule.schema";
 
 const scheduleRoutes = Router()
 
 scheduleRoutes.post("", 
     verifyAuthMiddleware,
     verifyScheduleDataMiddleware,
-    // verifyScheduleExistsMiddleware,
+    verifyScheduleExistsMiddleware,
     createScheduleController)
 scheduleRoutes.get("/properties/:id", 
     verifyAuthMiddleware,
