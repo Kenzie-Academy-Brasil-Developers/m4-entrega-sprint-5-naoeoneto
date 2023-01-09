@@ -1,23 +1,24 @@
 import AppDataSource from "../../data-source"
 import { Property } from "../../entities/property.entity"
+import { Schedule } from "../../entities/schedules.entity"
+import { AppError } from "../../errors"
 
 const listSchedulesByPropertiesService = async (propId: string) => {
-    const propertyRep = AppDataSource.getRepository(Property)
+    const schedulesRep = AppDataSource.getRepository(Schedule)
+    const PropertyRep = AppDataSource.getRepository(Property)
 
-    const list = await propertyRep.find({
-        where: { id: propId },
-        relations: { schedules: true }
-    })
+    const property = await PropertyRep.findOneBy({ id: propId })
+    if(!property){
+        throw new AppError("Property not found", 404)
+    }
 
-    const prop = list[0]
-    delete prop.id
-    delete prop.sold
-    delete prop.value
-    delete prop.createdAt
-    delete prop.updatedAt
-    delete prop.size
+    const schedules = await schedulesRep.createQueryBuilder("schedulesToUsersAndProperties")
+        .innerJoinAndSelect('schedulesToUsersAndProperties.property', "properties")
+        .innerJoinAndSelect('schedulesToUsersAndProperties.user', "users")
+        .where('properties.id = :id', {id: propId})
+        .getMany()
 
-    return prop
+    return {schedules: schedules}
 }
 
 export default listSchedulesByPropertiesService

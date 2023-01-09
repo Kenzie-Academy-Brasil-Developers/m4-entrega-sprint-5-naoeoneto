@@ -8,7 +8,7 @@ const verifyIsActiveToLoginMiddleware = async (req: Request, res: Response, next
 
     const login = await userRep.findOneBy({ email: req.body.email })
     if(!login.isActive){
-        throw new AppError("You are not allowed to login", )
+        throw new AppError("You are not allowed to login", 400)
     }
 
     return next()

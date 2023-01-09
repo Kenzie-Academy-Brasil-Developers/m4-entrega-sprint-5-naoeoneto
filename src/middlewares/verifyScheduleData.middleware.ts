@@ -12,8 +12,8 @@ const verifyScheduleDataMiddleware = async (req: Request, res: Response, next: N
         throw new AppError("Property not found", 404)
     }
 
-    const checkDate = new Date(date).getDay()
-    if(checkDate > 4){
+    const checkDate = new Date(date).toLocaleDateString('en-US',{ weekday: 'long' })
+    if(checkDate === "Sunday" || checkDate === "Saturday"){
         throw new AppError("You can't book at this day", 400)
     }
     

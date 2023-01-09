@@ -17,7 +17,7 @@ const createPropertyService = async (data: IPropertyRequest): Promise<Property> 
     if(!category){
         throw new AppError("Category doesn't exists", 404)
     }
-
+    
     const newAddress = addressRep.create({ district, zipCode, number, city, state })
     await addressRep.save(newAddress)
 

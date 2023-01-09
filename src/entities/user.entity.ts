@@ -35,5 +35,5 @@ export class User {
     };
 
     @OneToMany(() => Schedule, schedule => schedule.user)
-    schedule: Schedule
+    schedule: Schedule[]
 }
