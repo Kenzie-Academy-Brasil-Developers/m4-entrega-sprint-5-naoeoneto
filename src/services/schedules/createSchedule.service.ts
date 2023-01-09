@@ -11,14 +11,14 @@ const createScheduleService = async (data: IScheduleRequest, idUser: string): Pr
     const userRep = AppDataSource.getRepository(User)
     const scheduleRep = AppDataSource.getRepository(Schedule)
 
-    const prop = await propertyRep.findOneBy({ id: propertyId })
+    const property = await propertyRep.findOneBy({ id: propertyId })
     const user = await userRep.findOneBy({ id: idUser })
 
     const newSchedule = scheduleRep.create({
         date,
         hour,
-        property: prop,
-        user: user
+        property,
+        user
     })
     await scheduleRep.save(newSchedule)
 
